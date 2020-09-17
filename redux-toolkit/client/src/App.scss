@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+
+  &__header {
+    max-height: 300px;
+    max-width: 100%;
+    background: #333;
+    color: white;
+    font-size: 3rem;
+    text-transform: uppercase;
+    display: flex;
+    transition: all 200ms;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    margin: 2rem 2rem 0;
+    flex-grow: 1;
+    border-radius: 2rem 2rem 0 0 ;
+
+    &:hover {
+      background: #444;
+    }
+
+    &:active {
+      background: #222;
+    }
+  }
+
+  &__content {
+    margin: 0 2rem 2rem;
+    padding: 2rem;
+    border: 1rem solid #333;
+    transition: all 200ms ease;
+    border-radius: 0 0 2rem 2rem;
+
+    &--pending {
+      border-color: #dda618;
+    }
+
+    &--resolved {
+      border-color: #333;
+    }
+
+    &--rejected {
+      border-color: red;
+    }
+  }
+}
