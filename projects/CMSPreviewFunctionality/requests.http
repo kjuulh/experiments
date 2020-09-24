@@ -1,0 +1,43 @@
+GET {{HOST}}/weatherforecast
+Accept: application/json
+
+###
+
+# @name getAllData
+GET {{HOST}}/api/website-data
+Accept: application/json
+
+> {%
+client.global.set("getAllData", response.body[0]["websiteId"])
+%}
+
+###
+
+# @name getData
+GET {{HOST}}/api/website-data/{{getAllData}}
+Accept: application/json
+
+> {%
+client.global.set("getData", response.body[0]["websiteId"])
+%}
+
+###
+
+# @name updateData
+POST {{HOST}}/api/website-data/{{getData}}
+Content-Type: application/json
+
+{
+  "name": "some-random-name",
+  "body": []
+}
+
+###
+
+# @name getData
+GET {{HOST}}/api/website-data/{{getAllData}}
+Accept: application/json
+
+> {%
+client.global.set("getData", response.body["websiteId"])
+%}
