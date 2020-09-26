@@ -12,6 +12,8 @@
     <ItemGroup>
       <None Remove="data\weather.dat" />
       <Content Include="data\weather.dat" />
+      <None Remove="data\football.dat" />
+      <Content Include="data\football.dat" />
     </ItemGroup>
 
 </Project>
