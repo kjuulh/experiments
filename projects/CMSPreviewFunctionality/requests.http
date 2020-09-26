@@ -1,30 +1,23 @@
 GET {{HOST}}/weatherforecast
 Accept: application/json
 
+
 ###
 
-# @name getAllData
-GET {{HOST}}/api/website-data
+GET {{HOST}}/api/website/
 Accept: application/json
 
 > {%
-client.global.set("getAllData", response.body[0]["websiteId"])
+client.global.set("websiteId", response.body[0]["websiteId"])
 %}
+
+### 
+GET {{HOST}}/api/activesite/{{websiteId}}
+Content-Type: application/json
 
 ###
 
-# @name getData
-GET {{HOST}}/api/website-data/{{getAllData}}
-Accept: application/json
-
-> {%
-client.global.set("getData", response.body[0]["websiteId"])
-%}
-
-###
-
-# @name updateData
-POST {{HOST}}/api/website-data/{{getData}}
+POST {{HOST}}/api/website/{{websiteId}}
 Content-Type: application/json
 
 {
@@ -34,10 +27,31 @@ Content-Type: application/json
 
 ###
 
-# @name getData
-GET {{HOST}}/api/website-data/{{getAllData}}
+GET {{HOST}}/api/website/{{websiteId}}
 Accept: application/json
 
 > {%
-client.global.set("getData", response.body["websiteId"])
+client.global.set("stateId", response.body[0]["stateId"])
 %}
+
+### 
+GET {{HOST}}/api/activesite/{{websiteId}}/website
+Content-Type: application/json
+
+### 
+
+PUT {{HOST}}/api/activesite/{{websiteId}}
+Content-Type: application/json
+
+{
+"activeStateId": "{{stateId}}"
+}
+
+### 
+
+GET {{HOST}}/api/activesite/{{websiteId}}
+Content-Type: application/json
+
+### 
+GET {{HOST}}/api/activesite/{{websiteId}}/website
+Content-Type: application/json
